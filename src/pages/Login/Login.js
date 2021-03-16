@@ -1,13 +1,26 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import InputText from '../../components/input/InputText';
+import { login } from './action';
+// import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+// import { baseUrl } from '../../config';
 
 export default function Login() {
   const history = useHistory();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [response, setResponse] = useState({ success: false });
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    login({ username, password }, setResponse);
   };
+
+  useEffect(() => {
+    if (response.success) history.push('/');
+    else setMessage(response.message);
+  }, [response]);
 
   return (
     <div className="flex justify-center font-nunito h-screen ">
@@ -21,32 +34,29 @@ export default function Login() {
               Masuk!
             </h1>
           </div>
-          <form onSubmit={(e) => handleSubmit(e)} className="mt-5 z-20">
+          <form className="mt-5 z-20">
             <InputText
               placeholder="Masukan username"
               type="text"
               className="mb-2"
               name="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <InputText
               placeholder="Masukan password"
               type="password"
               name="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="flex mt-4 flex-col md:flex-row-reverse justify-between">
-              <button
-                type="submit"
-                className="btn-main mt-2 md:w-36 w-full tracking-wider"
-              >
-                Masuk
-              </button>
-              <button
-                onClick={() => history.push('/register')}
-                className="btn-outline mt-2 md:w-36 w-full tracking-wider"
-              >
-                Daftar
-              </button>
-            </div>
+            <p className="text-xs text-red-500 mt-2">{message}</p>
+            <button
+              className="btn-main mt-3 w-full tracking-wider"
+              onClick={(e) => handleSubmit(e)}
+            >
+              Masuk
+            </button>
           </form>
         </div>
         <span className="text-gray-800 opacity-30">

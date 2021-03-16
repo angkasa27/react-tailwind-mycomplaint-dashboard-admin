@@ -6,7 +6,6 @@ module.exports = {
       colors: {
         primary: '#D10606',
       },
-
       fontFamily: {
         nunito: ['Nunito'],
       },

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function DataTable(props) {
-  const { className, column, data, meta, size } = props;
+  const { className, column, data, size } = props;
 
   return (
     <table className={className}>
@@ -14,16 +14,19 @@ export default function DataTable(props) {
         </tr>
       </thead>
       <tbody>
-        {data.map((item, idx) => (
-          <TableRow
-            column={column}
-            idx={idx}
-            item={item}
-            key={idx}
-            meta={meta}
-            size={size}
-          />
-        ))}
+        {data.length > 0 &&
+          data.map((item, idx) => {
+            item.order = idx;
+            return (
+              <TableRow
+                column={column}
+                idx={idx}
+                item={item}
+                key={idx}
+                size={size}
+              />
+            );
+          })}
       </tbody>
     </table>
   );
@@ -47,7 +50,7 @@ DataTable.propTypes = {
 
 export function TableHeader({ item }) {
   return (
-    <th className="bg-gray-100 p-2 pl-5 text-left font-bold capitalize ">
+    <th className="bg-indigo-100 text-indigo-500 p-2 pl-5 text-left font-bold capitalize ">
       {item.heading}
     </th>
   );
@@ -81,7 +84,6 @@ TableRow.defaultProps = {
   column: [],
   idx: 0,
   item: {},
-  meta: {},
   size: 10,
 };
 
@@ -89,6 +91,5 @@ TableRow.propTypes = {
   column: PropTypes.array,
   idx: PropTypes.number,
   item: PropTypes.object,
-  meta: PropTypes.object,
   size: PropTypes.number,
 };
