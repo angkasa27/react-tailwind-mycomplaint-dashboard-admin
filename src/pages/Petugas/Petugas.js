@@ -8,6 +8,7 @@ import { getAll, addNew, updateOperator, deleteOne } from './action';
 import queryString from 'querystring';
 import ModalConfirm from '../../components/fragments/ModalConfirm';
 import ModalFormPetugas from '../../components/fragments/ModalFormPetugas';
+import Pagination from '../../components/elements/Pagination';
 
 export default function Petugas() {
   const history = useHistory();
@@ -97,9 +98,14 @@ export default function Petugas() {
       heading: 'Username',
       value: (v) => v.Username,
     },
+
+    {
+      heading: 'Nomor Telepon',
+      value: (v) => v.telp,
+    },
     {
       heading: 'tgl bergabung',
-      value: (v) => renderDate(v.telp),
+      value: (v) => renderDate(v.createAt_petugas),
     },
     {
       heading: '',
@@ -196,6 +202,14 @@ export default function Petugas() {
 
         <div className="overflow-x-auto w-full rounded-md border-gray-100 border">
           <Table column={column} data={data.data} className="table w-full" />
+        </div>
+        {data.meta && data.meta.totalData === 0 && (
+          <div className="flex justify-center mt-4">
+            <p className="">Data Kosong</p>
+          </div>
+        )}
+        <div className="flex justify-end mt-4">
+          <Pagination location={location.pathname} meta={data.meta} />
         </div>
       </div>
       <ModalConfirm

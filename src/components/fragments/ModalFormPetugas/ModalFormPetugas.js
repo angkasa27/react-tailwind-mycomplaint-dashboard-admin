@@ -15,12 +15,15 @@ export default function ModalEditPengguna({
   const location = useLocation();
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
   const { add } = queryString.parse(location.search.replace('?', ''));
 
   useEffect(() => {
     if (data) {
       setName(data.nama_petugas);
       setUsername(data.Username);
+      setPhone(data.telp);
     }
   }, [data]);
 
@@ -29,8 +32,19 @@ export default function ModalEditPengguna({
   };
 
   const handleSubmit = () => {
-    if (add) handleAction({ name, username, telp: date() });
-    else handleAction({ name, username });
+    if (add)
+      handleAction({
+        name,
+        username,
+        phone,
+        createAt: date(),
+        password,
+      });
+    else handleAction({ name, username, phone });
+    setName('');
+    setUsername('');
+    setPhone('');
+    setPassword('');
   };
 
   return (
@@ -53,6 +67,24 @@ export default function ModalEditPengguna({
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        <InputText
+          placeholder="nomor telepon"
+          type="text"
+          name="Nomor Telepon"
+          className="mb-2"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        {add && (
+          <InputText
+            placeholder="password"
+            type="password"
+            name="Password"
+            className="mb-2"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        )}
         <div className="mt-2 flex flex-col md:flex-row-reverse justify-between">
           <button
             onClick={() => handleSubmit()}

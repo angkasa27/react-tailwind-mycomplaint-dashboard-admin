@@ -109,7 +109,7 @@ export default function Pengguna() {
     },
     {
       heading: 'tgl bergabung',
-      value: (v) => renderDate(v.createAt),
+      value: (v) => renderDate(v.createAt_masyarakat),
     },
     {
       heading: '',

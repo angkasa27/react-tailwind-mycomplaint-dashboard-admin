@@ -18,7 +18,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import queryString from 'querystring';
 import Pagination from '../../components/elements/Pagination';
 import { getRole } from '../../utils/storage';
-import { Document, Page } from 'react-pdf';
+// import { Document, Page } from 'react-pdf';
 
 export default function Pengaduan() {
   const history = useHistory();
@@ -431,7 +431,7 @@ export default function Pengaduan() {
           <Pagination location={location.pathname} meta={data.meta} />
         </div>
       </div>
-
+{/* 
       <div>
         <Document file={dokumen} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
@@ -439,7 +439,7 @@ export default function Pengaduan() {
         <p>
           Page {pageNumber} of {numPages}
         </p>
-      </div>
+      </div> */}
 
       <ModalDetail
         open={detail}
