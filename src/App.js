@@ -31,7 +31,7 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className=" bg-fixed bg-gray-50 bg-cover  text-gray-600">
+    <div className=" bg-gray-50  text-gray-600 min-h-screen">
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Home} />

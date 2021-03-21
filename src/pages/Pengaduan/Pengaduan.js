@@ -10,7 +10,7 @@ import {
   getAll,
   getDetail,
   updateStatus,
-  getDokumen,
+  // getDokumen,
   sendTanggapan,
   deleteOne,
 } from './action';
@@ -31,7 +31,7 @@ export default function Pengaduan() {
   const [terima, openTerima] = useState(false);
   const [data, setData] = useState({});
   const [dataDetail, setDataDetail] = useState({});
-  const [dokumen, setDokumen] = useState(false);
+  // const [dokumen, setDokumen] = useState(false);
   const [loading, setLoading] = useState(false);
   const { page = 1, id } = queryString.parse(location.search.replace('?', ''));
 
@@ -326,7 +326,8 @@ export default function Pengaduan() {
   };
 
   const handleDownloadDokumen = () => {
-    getDokumen(setDokumen);
+    // getDokumen(setDokumen);
+    console.log('onProgress');
   };
 
   useEffect(() => {
@@ -346,15 +347,6 @@ export default function Pengaduan() {
     deleteOne(id, setLoading);
     closeModal();
   };
-
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-
-  console.log(dokumen);
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
 
   return (
     <Dashboard>
@@ -431,7 +423,7 @@ export default function Pengaduan() {
           <Pagination location={location.pathname} meta={data.meta} />
         </div>
       </div>
-{/* 
+      {/* 
       <div>
         <Document file={dokumen} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
