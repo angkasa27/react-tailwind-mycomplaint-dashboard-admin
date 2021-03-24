@@ -18,7 +18,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import queryString from 'querystring';
 import Pagination from '../../components/elements/Pagination';
 import { getRole } from '../../utils/storage';
-// import { Document, Page } from 'react-pdf';
 
 export default function Pengaduan() {
   const history = useHistory();
@@ -33,6 +32,7 @@ export default function Pengaduan() {
   const [dataDetail, setDataDetail] = useState({});
   const [dokumen, setDokumen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [base64Document, setBase64Document] = useState('');
   const { page = 1, id } = queryString.parse(location.search.replace('?', ''));
 
   const renderDetail = (detail, pengaduanId) => {
@@ -327,12 +327,19 @@ export default function Pengaduan() {
 
   const handleDownloadDokumen = () => {
     getDokumen(setDokumen);
-    console.log('onProgress');
   };
 
   useEffect(() => {
-   console.log(dokumen)
-  }, [dokumen])
+    if (dokumen) {
+      const linkSource = `data:application/pdf;base64,${dokumen.data}`;
+      const downloadLink = document.createElement('a');
+      const fileName = `all_pengaduan_${moment().format()}.pdf`;
+
+      downloadLink.href = linkSource;
+      downloadLink.download = fileName;
+      downloadLink.click();
+    }
+  }, [dokumen]);
 
   useEffect(() => {
     getAll(page, setData);
@@ -427,15 +434,6 @@ export default function Pengaduan() {
           <Pagination location={location.pathname} meta={data.meta} />
         </div>
       </div>
-      {/* 
-      <div>
-        <Document file={dokumen} onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={pageNumber} />
-        </Document>
-        <p>
-          Page {pageNumber} of {numPages}
-        </p>
-      </div> */}
 
       <ModalDetail
         open={detail}
