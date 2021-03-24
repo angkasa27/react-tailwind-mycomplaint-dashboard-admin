@@ -10,7 +10,7 @@ import {
   getAll,
   getDetail,
   updateStatus,
-  // getDokumen,
+  getDokumen,
   sendTanggapan,
   deleteOne,
 } from './action';
@@ -31,7 +31,7 @@ export default function Pengaduan() {
   const [terima, openTerima] = useState(false);
   const [data, setData] = useState({});
   const [dataDetail, setDataDetail] = useState({});
-  // const [dokumen, setDokumen] = useState(false);
+  const [dokumen, setDokumen] = useState(false);
   const [loading, setLoading] = useState(false);
   const { page = 1, id } = queryString.parse(location.search.replace('?', ''));
 
@@ -326,9 +326,13 @@ export default function Pengaduan() {
   };
 
   const handleDownloadDokumen = () => {
-    // getDokumen(setDokumen);
+    getDokumen(setDokumen);
     console.log('onProgress');
   };
+
+  useEffect(() => {
+   console.log(dokumen)
+  }, [dokumen])
 
   useEffect(() => {
     getAll(page, setData);
