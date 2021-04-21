@@ -32,7 +32,6 @@ export default function Pengaduan() {
   const [dataDetail, setDataDetail] = useState({});
   const [dokumen, setDokumen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [base64Document, setBase64Document] = useState('');
   const { page = 1, id } = queryString.parse(location.search.replace('?', ''));
 
   const renderDetail = (detail, pengaduanId) => {
@@ -272,7 +271,7 @@ export default function Pengaduan() {
   const column = [
     {
       heading: 'Subjek',
-      value: (v) => v.subject,
+      value: (v) => <p className="font-bold">{v.subject}</p>,
     },
     {
       heading: 'pelapor',

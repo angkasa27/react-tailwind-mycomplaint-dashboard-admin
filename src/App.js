@@ -16,12 +16,6 @@ export default function App() {
   const noAuthRoutes = ['/login', '/Login'];
   const noAuth = noAuthRoutes.some((r) => location.pathname.match(r));
 
-  // useEffect(() => {
-  //   setToken(
-  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtYSI6InBldHVnYXMiLCJ1cyI6InBldHVnYXMiLCJsZXZlbCI6InBldHVnYXMiLCJpYXQiOjE2MTUzNTM1NzUsImV4cCI6MTYxNTUyNjM3NX0.4cTM1AqFdu15oKMWZxna9hIHnPiR76d19y9YJWhH4IU'
-  //   );
-  // }, []);
-
   useEffect(() => {
     if (!getToken() && !noAuth) {
       history.push('/login');
@@ -31,7 +25,7 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className=" bg-gray-50  text-gray-600 min-h-screen">
+    <div className="  text-gray-600 min-h-screen">
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Home} />

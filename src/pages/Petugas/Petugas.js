@@ -92,7 +92,7 @@ export default function Petugas() {
   const column = [
     {
       heading: 'Nama',
-      value: (v) => v.nama_petugas,
+      value: (v) => <p className="font-bold">{v.nama_petugas}</p>,
     },
     {
       heading: 'Username',

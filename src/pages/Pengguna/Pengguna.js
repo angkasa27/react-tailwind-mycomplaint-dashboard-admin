@@ -93,7 +93,7 @@ export default function Pengguna() {
   const column = [
     {
       heading: 'Nama',
-      value: (v) => v.nama,
+      value: (v) => <p className="font-bold">{v.nama}</p>,
     },
     {
       heading: 'Username',
