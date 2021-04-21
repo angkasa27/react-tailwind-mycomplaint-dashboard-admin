@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getRole } from '../../../utils/storage';
+import { getRole, clearStorage } from '../../../utils/storage';
+import { useHistory } from 'react-router-dom';
 
 export default function Navbar({ className }) {
+  const history = useHistory();
   const [view, setView] = useState(false);
   const [classes, setClasses] = useState('');
   const role = getRole();
@@ -12,10 +14,15 @@ export default function Navbar({ className }) {
     else setClasses(' hidden');
   }, [view]);
 
+  const handleLogout = () => {
+    clearStorage();
+    history.push('/login');
+  };
+
   return (
     <div className={className}>
-      <nav className="bg-white overflow-hidden mb-5 md:mb-0 md:w-1/6 md:fixed md:h-screen">
-        <div className="mx-6 my-1 md:my-0 flex justify-between">
+      <nav className="bg-white overflow-hidden md:w-1/6 md:fixed md:h-screen">
+        <div className="mx-6 my-4 md:my-0 flex justify-between">
           <h1 className="txt-h1 md:text-2xl md:my-5">
             My<span className="text-gray-600">Complaint</span>
           </h1>
@@ -134,6 +141,26 @@ export default function Navbar({ className }) {
               <p>Petugas</p>
             </NavLink>
           )}
+          <span
+            onClick={() => handleLogout()}
+            className="md:hidden flex rounded p-4 content-center hover:bg-indigo-50 transition-colors duration-100 ease-out cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-5 mr-2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+            <p>Keluar</p>
+          </span>
         </div>
       </nav>
     </div>
