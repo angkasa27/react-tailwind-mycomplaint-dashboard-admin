@@ -25,7 +25,8 @@ export default function Pengguna() {
   // }, [response]);
 
   const renderDate = (date) => {
-    return moment(date).locale('id').format('D MMMM YYYY');
+    if (date !== '') return moment(date).locale('id').format('D MMMM YYYY');
+    else return moment().locale('id').format('D MMMM YYYY');
   };
 
   const renderAction = (userId) => {
