@@ -25,7 +25,7 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className="  text-gray-600 min-h-screen">
+    <div className=" bg-gray-100 text-gray-600 min-h-screen">
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Home} />

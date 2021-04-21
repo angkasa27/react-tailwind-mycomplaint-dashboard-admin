@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 export default function Dashboard({ children }) {
   const [logout, setLogout] = useState(false);
   return (
-    <div className="grid grid-cols-6 font-nunito overflow-hidden ">
+    <div className="bg-white grid grid-cols-6 font-nunito overflow-hidden ">
       <Navbar className="w-full md:col-span-1 col-span-6 " />
       <div className="w-full md:col-span-5 col-span-6 min-h-screen">
         <Header logout={logout} setLogout={setLogout} />
