@@ -48,14 +48,14 @@ export default function Navbar({ className }) {
         </div>
         <div
           className={
-            'text-gray-500 tracking-wider md:h-full mx-2 mb-2 md:block ' +
+            'text-gray-500 tracking-wider md:h-full mx-2 md:mr-0 mb-2 md:block ' +
             classes
           }
         >
           <NavLink
             to="/dashboard"
-            className="flex rounded p-4 content-center hover:bg-indigo-50 transition duration-200 ease-out"
-            activeClassName="text-indigo-500 font-bold bg-indigo-100"
+            className="flex rounded md:rounded-r-none md:rounded-l-lg p-4 content-center hover:bg-indigo-50 transition duration-200 ease-out"
+            activeClassName="text-blue-500 font-bold bg-indigo-100 md:bg-white border-r-4 border-indigo-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +77,8 @@ export default function Navbar({ className }) {
 
           <NavLink
             to="/pengaduan"
-            className="flex rounded p-4 content-center hover:bg-indigo-50 transition duration-200 ease-out"
-            activeClassName="text-indigo-500 font-bold bg-indigo-100"
+            className="flex rounded md:rounded-r-none md:rounded-l-lg p-4 content-center hover:bg-indigo-50 transition duration-200 ease-out"
+            activeClassName="text-blue-500 font-bold bg-indigo-100 md:bg-white border-r-4 border-indigo-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -99,8 +99,8 @@ export default function Navbar({ className }) {
 
           <NavLink
             to="/pengguna"
-            className="flex rounded p-4 content-center hover:bg-indigo-50 transition duration-200 ease-out"
-            activeClassName="text-indigo-500 font-bold bg-indigo-100"
+            className="flex rounded md:rounded-r-none md:rounded-l-lg p-4 content-center hover:bg-indigo-50 transition duration-200 ease-out"
+            activeClassName="text-blue-500 font-bold bg-indigo-100 md:bg-white border-r-4 border-indigo-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -121,8 +121,8 @@ export default function Navbar({ className }) {
           {role === 'admin' && (
             <NavLink
               to="/petugas"
-              className="flex rounded p-4 content-center hover:bg-indigo-50 transition-colors duration-100 ease-out"
-              activeClassName="text-indigo-500 font-bold bg-indigo-100"
+              className="flex rounded md:rounded-r-none md:rounded-l-lg p-4 content-center hover:bg-indigo-50 transition-colors duration-100 ease-out"
+              activeClassName="text-blue-500 font-bold bg-indigo-100 md:bg-white border-r-4 border-indigo-500"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +143,7 @@ export default function Navbar({ className }) {
           )}
           <span
             onClick={() => handleLogout()}
-            className="md:hidden flex rounded p-4 content-center hover:bg-indigo-50 transition-colors duration-100 ease-out cursor-pointer"
+            className="md:hidden flex rounded md:rounded-r-none md:rounded-l-lg p-4 content-center hover:bg-indigo-50 transition-colors duration-100 ease-out cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
